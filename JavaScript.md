@@ -63,8 +63,8 @@
 	+ 不完美性   {}和[]
 - toString.call() *
 - instanceof
-- constructor 判断实例的构造函数是谁
- + `console.log(arr.constructor === Array)`
+- constructor 判断原型对象的构造函数是谁
+ + `console.log(Array.prototype.constructor === Array)`
 
 ## 分支和循环
 #### 分支结构
@@ -115,7 +115,21 @@
 - startWith
 - forEach *IE中没有*
 
+## 函数
+#### 概念
+- 完成一定功能的一段预定义好的代码
+- 工具
+- 单一职责原则
+- 工具
+
 ## 对象
+#### 概念
+- 属性和方法的集合体
+- 把类似功能的函数放在一起管理
+- 工具包
+- 万物皆对象
+- 双对象原则
+
 #### 创建对象
 - `new Object()`
 - `Object.create()`
@@ -230,12 +244,67 @@
 		* previousSibling
 		* nextSibling
 	> 除了`parentNode`,都会受到看不见的空格、换行等制表符的影响
+- 元素树（IE9+）
+	+ 父子关系
+		* node.parentElementNode
+		* node.children
+		* node.firstElementChild
+		* node.lastElementChild
+	+ 兄弟关系
+		* node.previousSibling
+		* node.nextSibling
 
-## eval
+#### 遍历 DOM
+- Nodeiterator
+	+ 创建遍历器
+	+ 使用循环推动遍历器到每个节点
+		```
+		var iterator = document.createNodeiterator{
+			开始节点对象,
+			[NodeFilter.SHOW_ALL],
+			[NoderFilter.SHOW_ELEMENT],
+			null,
+			false
+		}
+		```
+
+- TreeWalker
 
 ## JSON
 - `JSON.parse()` 反序列化
 - `JSON.stringify()` 序列化
+
+## 函数的四种调用模式
+- 函数执行模式
+	+ `this` ---> global，浏览器中指向window
+- 对象方法的调用模式
+	+ `this` ---> 调用方法的对象
+- 构造器的调用模式（没有return）
+ 	+ `this` --->  构造出来实例的对象
+- call和apply调用模式
+
+
+## 操作符 new
+- 在内存中开一块空间
+- 创建一个新空对象
+- 把 this 指向这个新对象
+- 把空对象的__proto__指向构造函数的原型对象
+- 当构造函数执行完成，没有return，那么将空对象返回
+- 如果构造函数有return
+
+```
+function Func(){
+	
+}
+var a = new Func();
+```
+
+## eval
+
+## console.time();
+- 测试一段程序的执行时间
+	+ console.time("main")
+	+ console.timeEnd("main");
 
 ## window.onload VS $
 - onload

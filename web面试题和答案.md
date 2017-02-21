@@ -264,14 +264,19 @@
 
 #### 冒泡排序
 #### 创建对象
+- new Object()
+- Object.create();
+- 构造函数和原型
+- 工厂
+
 #### 创建函数
 #### 全局函数
 - parseInt
 - parseFloat
 - isNaN
+- eval
 - encodeURI
 - decodeURI
-- eval
 
 #### 数据类型
 #### 阻止表单提交
@@ -287,6 +292,68 @@
 - innerText是元素节点内所有的文本节点
 
 #### innerHTML、nodeValue、textContent
+- nodeValue通过属性的方式读取或设置指定节点的文本内容，适用于文本类型的节点
+- textContent属性读取或设置指定节点的文本内容，所包含的所有子节点的文本内容组合
+
+#### array中添加数据的方法 4
+#### js内置对象
+- Math
+- Global 浏览器环境中Global就是window
+
+#### 本地对象
+- Object、Function、Array、String、Boolean
+- RangeError、ReferenceError、SyntaxError、TypeError、URIError
+
+#### Ajax
+- 客户端向服务器端发送请求，而无需刷新页面的技术
+- 包含的技术：HTML、css、JavaScript、XML和XMLHttpRequest
+- XMLHttpRequest对象是Ajax的核心，是实现异步通信的根本
+- XMLHttpRequest不是W3C的标准，但是被主流浏览器支持
+- IE6中使用ActiveXObject("Microsoft.XMLHTTP")
+- Ajax语法：创建对象，初始化，发送请求，回调函数
+- 优点：
+	+ 页面局部刷新，提高用户体验
+	+ 异步与服务器通信，更加迅捷
+	+ 减轻服务器的负担
+	+ 基于标准，被广泛支持
+- 缺点
+	+ 不支持浏览器back按钮
+	+ 安全问题
+	+ 对搜索引擎的支持比较弱
+
+#### Ajax乱码
+- 统一页面和服务器的编码
+- 对请求和响应的 Content-Type 设置正确编码
+- 对请求参数进行编码处理
+
+#### Ajax如何解析JSON数据
+#### get和post请求的区别
+
+#### JSON
+- 一种轻量级的数据交换格式
+- 功能类似XML
+- 语法和js中对象字面量形式非常相近
+- 在前端领域代替XML
+
+#### 跨域
+- js中支持跨域的标签
+	+ img
+	+ ifarme
+	+ a
+	+ script
+
+#### jQ中注册事件
+- bind 
+
+#### 获取HTML内容，属性值，input，创建新节点
+- html()
+- text()
+- attr()
+- val()
+- jQuery()
+
+#### 网页与服务器的即时通信
+- websockets
 
 
 
@@ -314,9 +381,9 @@
 - IE6双倍边距 （横向margin） _display
 - 超链接点击失效
 - z-index 
-- IE6 png  做成png8
+- IE6 png24  做成png8
 - min-height
-- getAttribute()
+- 常规属性获取方法和getAttribute()
 - even对象的x，y和pageX，pageY
 - chrome中文小于12px默认强制12px，-webkit-text-size-adjust:none;
 
