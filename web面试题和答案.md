@@ -31,11 +31,6 @@
 - <!doctype>不存在或格式不正确，会导致文档以混杂模式来呈现
 
 #### title和alt
-#### 对网站资源进行优化
-- CDN托管
-- 文件最小化处理
-- 文件合并
-- 缓存的使用
 
 #### 超链接
 - <a href="#">空连接</a>
@@ -292,7 +287,7 @@
 - innerText是元素节点内所有的文本节点
 
 #### innerHTML、nodeValue、textContent
-- nodeValue通过属性的方式读取或设置指定节点的文本内容，适用于文本类型的节点
+- nodeValue通过属性的方式读取或设置指定节点的文本内容，只适用于文本类型的节点
 - textContent属性读取或设置指定节点的文本内容，所包含的所有子节点的文本内容组合
 
 #### array中添加数据的方法 4
@@ -300,9 +295,13 @@
 - Math
 - Global 浏览器环境中Global就是window
 
-#### 本地对象
+#### js本地对象
 - Object、Function、Array、String、Boolean
 - RangeError、ReferenceError、SyntaxError、TypeError、URIError
+
+#### javascipt同源策略
+- 一段js代码只能读取来自同一来源的窗口和文档的属性
+- 来源：主机名、协议和端口号的组合
 
 #### Ajax
 - 客户端向服务器端发送请求，而无需刷新页面的技术
@@ -335,12 +334,22 @@
 - 语法和js中对象字面量形式非常相近
 - 在前端领域代替XML
 
+#### 如何从服务器获取复杂数据
+- json
+- xml
+
 #### 跨域
 - js中支持跨域的标签
 	+ img
 	+ ifarme
 	+ a
 	+ script
+
+#### 为什么要用jQ
+- 浏览器兼容
+- DOM
+- 事件注册
+- Ajax数据解析
 
 #### jQ中注册事件
 - bind 
@@ -351,11 +360,62 @@
 - attr()
 - val()
 - jQuery()
+***
+- append()
+- addClass()
+- css()
+***
+- position()
+- offset()
+***
+- hover
+- bind
+- unbind
+*** 
+extend()
+
+#### ajax、get、post、ajaxSetup、getJSON
 
 #### 网页与服务器的即时通信
 - websockets
 
+#### DOM获取元素属性值
+- element.getAttributes[index].value
+- element.getAttributes["属性名"].value
+- emenent.getAttributeNode("属性名").value
+- element.getAttribute("属性名")
 
+#### DOM查找元素
+#### 判断数据类型
+- typeof
+- toString.call
+- instanceof
+- constructor
+
+#### 添加 删除 替换 插入节点的方法
+- obj.appendChild()
+- obj.innersetBefore
+- obj.replaceChild
+- obj.removeChild
+
+#### IE和DOM事件流的区别
+- 执行顺序不一样
+- 参数不一样
+- 事件加不加on
+- this指向问题
+
+#### 事件委托
+- 利用事件冒泡的原理，自己所触发的事件，让他的父元素代替执行
+
+#### 阻止事件冒泡和默认事件
+- `canceBubble  return false`
+
+#### IE和标准下的兼容性写法
+- `var ev = ev || window.event`
+- `document.documentElement.clientWidth || document.body.clientWidth`
+- `var target = ev.srcElement || ev.target `
+
+####
 
 *****
 
@@ -391,3 +451,9 @@
 #### 火狐浏览器无法撑开固定高度容器
 - `div{ height:auto !important; height:200px; min-height:200px}`
 #### [常见的兼容性]( http://www.cnblogs.com/lgmcolin/archive/2013/02/12/2910179.html)
+
+## web优化
+- CDN托管
+- 文件最小化处理
+- 文件合并
+- 缓存的使用
