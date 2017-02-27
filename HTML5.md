@@ -76,3 +76,130 @@
 - 保存和还原
 	+ `ctx.save()` 保存当前环境状态
 	+ `ctx.restore()` 返回之前保存过的路径状态和属性
+
+#### 图片转base64
+- canvas.toDataURL("image/jpeg",0.5)
+
+#### 画布渲染画布
+- ctx2.drawImage(canvas,0,0)
+
+#### Konva
+[Konva官网](https://konvajs.github.io/)
+
+- 概念
+	+ 舞台
+	+ 获取数据都是用的方法
+- 使用
+	+ 引包
+- 语法
+```
+//创建舞台
+var stage = new Konva.Stage({
+	container:"container", //id
+	width:window.innerWidth,
+	height:window.innerHeight,
+});
+//创建一个层
+var layer = new Konva.Layer();
+//将层添加到舞台
+stage.add(layer);
+//创建一个矩形
+var rect = new Konva.Rect({
+	x : 100,
+	y : 100,
+	opacity : .4,
+	rotation : 40,
+	width : 100,
+	height : 200,
+	scaleX : 1.2,
+	scaleY : 1.2,
+	draggable : true,//可拖动
+	fill : "orange"
+});
+//将矩形添加到层上
+layer.add(rect);
+//将层渲染到舞台上
+ layer.draw();
+
+```
+- demo
+```
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Document</title>
+	<style>
+		body{
+			padding:0;
+			margin:0;
+			background-color:#f0f0f0;
+			overflow:hidden;
+		}
+	</style>
+	<script src="bower_components/konva/konva.js"></script>
+</head>
+<body>
+<div id="container"></div>
+<script>
+	var stage = new Konva.Stage({
+		container:"container",
+		width:window.innerWidth,
+		height:window.innerHeight,
+	}) 
+	var layer = new Konva.Layer();
+	stage.add(layer);
+
+	var cenX=stage.width()/2
+	var cenY=stage.height()/2
+
+	var x=1/8*stage.width();
+	var y=cenY;
+	var height=1/12*stage.height();
+	var maxWidth = 3/4*stage.width();
+	var innerRect = new Konva.Rect({
+		x:x,
+		y:y,
+		width:100,
+		height:height,
+		opacity:.7,
+		fill:"lightblue",
+		cornerRadius:height/2
+	});
+
+	var outerRect = new Konva.Rect({
+		x:x,
+		y:y,
+		width:maxWidth,
+		height:height,
+		stroke:"blue",
+		strokeWidth:4,
+		cornerRadius:height/2
+	});
+	/*
+	*类似于定位
+	*子形状为决定定位
+	*group为相对定位
+	*canvas为body
+	*/
+	var group = new Konva.Group({
+		x:0, 
+		y:0
+	})
+
+	group.add(innerRect);
+	group.add(outerRect);
+	layer.add(group);
+	layer.draw();
+
+	innerRect.to({
+		width:maxWidth,
+		duration:2,
+		easing:Konva.Easings.ElasticEaseOut
+	})
+
+</script>
+</body>
+</html>
+```

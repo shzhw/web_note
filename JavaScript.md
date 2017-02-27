@@ -64,7 +64,8 @@
 - toString.call() *
 - instanceof
 - constructor 判断原型对象的构造函数是谁
- + `console.log(Array.prototype.constructor === Array)`
+ 	+ `Array.prototype.constructor === Array`
+ 	+ `arr.constructor === Array`
 
 ## 分支和循环
 #### 分支结构
@@ -152,7 +153,6 @@
 		* 栈：函数执行完自动回收
 		* 堆：引用计数
 - 内存泄露
-
 
 ## 正则
 #### 正则语法
@@ -254,6 +254,40 @@
 		* node.previousSibling
 		* node.nextSibling
 
+#### 读取和修改节点对象
+- 元素内容
+	+ HTML内容
+		* innerHTML
+		* outerHTML
+	+ 文本内容
+		* textContent *IE8不兼容*
+		* innerText
+- 元素属性
+	+ attributes[i]
+	+ attributes["属性名"]
+	+ getAttribute("属性名")
+	+ setAttribute("属性名","值")
+	+ getAttributeNode(属性节点对象)
+	+ setAttributeNode(属性节点对象).value
+	+ hasAttribute("属性名")
+	+ removeAttribute("属性名")
+- 修改样式
+	+ node.style.属性=值
+	+ node.style.cssText=""
+- 获取元素最终应用所有样式
+	+ getComputedStyle(node)
+- 修改样式表中的样式
+- node.dataset.属性名
+
+#### 创建和删除节点
+- document.createElement("标签名")
+- parent.appendChild(node)
+- parent.inserBefore(node,oldNode)
+	* 插入oldNode之前
+- parent.replaceChild(node,oldNode)
+- parent.removeChild(node);
+- 文档片段
+
 #### 遍历 DOM
 - Nodeiterator
 	+ 创建遍历器
@@ -283,7 +317,13 @@
  	+ `this` --->  构造出来实例的对象
 - call和apply调用模式
 	+ call 借用时将被借用者的this指向借用者
-
+## this指向
+- global
+- 调用对象
+- call、apply
+- bind
+- new
+- 箭头函数
 
 ## 操作符 new
 - 在内存中开一块空间
@@ -307,6 +347,41 @@ var a = new Func();
 	+ console.time("main")
 	+ console.timeEnd("main");
 
+## 事件对象
+#### event
+- `var btn.onclick=function(event){}`
+- event就是事件对象，这里指向onclick
+- 包含了事件的所有信息
+- 兼容
+	+ `var event = event || window.event`
+- clientX、pageX、screenX
+	+ screen 电脑屏幕为基准点
+	+ pageX 文档为基准点 （IE6,7,8不兼容） 
+	+ clientX 当前窗口（可视区）
+
+## 事件冒泡
+- 当一个元素事件被触发，同样的事件将会在那个元素的所有祖先元素中被触发
+- 这个事件会一直冒泡到DOM树最上层
+- blur、focus、load、unload
+- 阻止冒泡
+	+ `event.stopPropagation()` W3C
+	+ `event.cancelBubble = true` IE
+
+## BOM
+#### Window
+- IE9+
+	+ window.innerWidth
+- 标准模式
+	+ document.documentElement.clientWidth
+- 怪异模式
+	+ document.body.clientWidth
+- window.screen.width 电脑分辨率，和浏览器没关系
+#### Location
+#### History
+#### screen
+#### Navigator
+
+
 ## window.onload VS $
 - onload
 	+ 页面全部加载完才开始执行，包括图片
@@ -321,4 +396,7 @@ var a = new Func();
 ##### 所有的文件操作都必须是绝对路径（物理路径）
 ##### config对象
 ##### 后台返回的标志位
+##### 动画原理
+- 步长
+- offsetLeft+步长
 

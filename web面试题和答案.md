@@ -246,16 +246,15 @@
 - L-V-H-A
 
 
-
-
 ****
 
 ## JavaScipt
 #### this
-- 指向全局对象
-- 元素事件：指向触发事件的元素
-- 构造函数：指向调用它的实例对象
-- 函数：全局对象或undefined
+- 函数执行
+- 对象调用
+- call/apply
+- new 
+- 箭头函数
 
 #### 冒泡排序
 #### 创建对象
@@ -274,21 +273,26 @@
 - decodeURI
 
 #### 数据类型
+- 原始类型5
+- 引用类型
+- typeof
+- toString.call
+- instanceof
+- constructor
+
 #### 阻止表单提交
 #### string.match和RegExp.exec
 #### trim
 #### js中操作cookie
 - `document.cookie`
 
-#### innerHTML、outeHTML、innerText
-- innerHTML是W3C的
-- outeHTML和innerText是IE独有的
-- outeHTML是元素节点内所有子节点和当前节点组成的HTML代码
-- innerText是元素节点内所有的文本节点
-
-#### innerHTML、nodeValue、textContent
-- nodeValue通过属性的方式读取或设置指定节点的文本内容，只适用于文本类型的节点
+#### innerHTML、outerHTML、innerText、textContent
+- innerHTML是W3C的，不包含标签
 - textContent属性读取或设置指定节点的文本内容，所包含的所有子节点的文本内容组合
+- outerHTML和innerText是IE独有的
+- outerHTML是元素节点内所有子节点和当前节点组成的HTML代码，包含标签
+- innerText是元素节点内所有的文本节点
+- nodeValue通过属性的方式读取或设置指定节点的文本内容，只适用于文本类型的节点
 
 #### array中添加数据的方法 4
 #### js内置对象
@@ -341,8 +345,8 @@
 #### 跨域
 - js中支持跨域的标签
 	+ img
-	+ ifarme
-	+ a
+	+ iframe
+	+ link
 	+ script
 
 #### 为什么要用jQ
@@ -353,6 +357,9 @@
 
 #### jQ中注册事件
 - bind 
+- on
+- delegate
+- live
 
 #### 获取HTML内容，属性值，input，创建新节点
 - html()
@@ -374,6 +381,17 @@
 *** 
 extend()
 
+#### onload()和 $(document).ready()的区别
+- document.onload是在结构和样式加载完才执行js
+- $().ready()可以多次使用
+- $().ready()在页面DOM元素加载完成后被调用
+- onload在所有关联资源（图像、音视频）加载完后才被调用
+
+#### jQ选择器
+- 基本选择器
+- 层次选择器/路劲选择器
+- 过滤选择器
+
 #### ajax、get、post、ajaxSetup、getJSON
 
 #### 网页与服务器的即时通信
@@ -388,9 +406,9 @@ extend()
 #### DOM查找元素
 #### 判断数据类型
 - typeof
-- toString.call
-- instanceof
+- toString.call- instanceof
 - constructor
+
 
 #### 添加 删除 替换 插入节点的方法
 - obj.appendChild()
@@ -398,28 +416,130 @@ extend()
 - obj.replaceChild
 - obj.removeChild
 
+#### js本地对象，内置对象，宿主对象
+- 内置对象2
+- 本地对象15
+- 宿主对象
+	+ 所有的BOM和DOM对象都是宿主对象
+
+#### eval
+- 将字符串解析成js代码执行
+- 不安全
+- 非常好性能，解析一次，执行一次
+
+#### null,undefined
+- null是一个空对象，`type of` 返回`object`
+- undefined:全局对象的一个特殊属性，值是未定义
+
 #### IE和DOM事件流的区别
 - 执行顺序不一样
 - 参数不一样
 - 事件加不加on
 - this指向问题
 
+#### IE和火狐的事件机制
+- IE是事件冒泡
+- 火狐是事件捕获
+
 #### 事件委托
 - 利用事件冒泡的原理，自己所触发的事件，让他的父元素代替执行
 
 #### 阻止事件冒泡和默认事件
-- `canceBubble  return false`
+- `cancelBubble`
+- `return false`
 
-#### IE和标准下的兼容性写法
-- `var ev = ev || window.event`
-- `document.documentElement.clientWidth || document.body.clientWidth`
-- `var target = ev.srcElement || ev.target `
+#### IE和标准的兼容性写法
+- `var ev = ev || window.event` 
+- `var target = ev.srcElement , ev.target ` 
+- `document.documentElement.clientWidth , document.body.clientWidth`
 
-####
+#### node.js
+- 高并发
+- 聊天
+- 实时消息推送
+- 基于事件驱动和无阻塞
+
+#### map
+#### hasOwnProperty，执行对象查找是，永远不会查找原型
+#### js延迟加载的方式
+- defer 只支持IE
+- asunc
+- 动态创建DOM，加载完后callback
+
+#### 跨域
+- jsonp
+- iframe
+- window.name
+- window.postMessage
+- 服务器上设置代理页面
+
+#### AMD和CMD
+- 对于依赖的模块，AMD是提前执行的，CMD是延迟执行。
+- ReuireJs从2.0开始，也改成了延迟执行
+- CMD推崇依赖就近，AMD推崇依赖前置
+- AMD的API默认是一个当多个用，CMD的API严格区分，职责单一
+
+#### call和apply
+#### web worker
+- 异步执行js文件
+- 不能修改HTML元素，可以自由使用js数据类型
+- var worker=new Worker(.js)
+
+#### 内存泄露
+- setTimeout第一个参数是字符串时
+- 闭包
+- 控制台日志
+- 递归
+
+#### 页面跳转和刷新
+- a
+- 表单提交
+- location.href="url"
+- location.assign("url")
+- location.replace()
+- location.reload()
+- window.open("url")
+- history.go()
+
+#### http状态码
+- 200 成功
+- 303
+- 400
+- 404 资源不存在
+- 500
 
 *****
 
 ## 兼容
+#### IE和FF
+- window.event
+- 获取事件源
+	+ srcElement 
+	+ target
+- 添加，去除事件
+	+ IE
+		* element.attachEvent("onclick",function)
+		* element.detachEvent("onclick",function)
+	+ FF
+		* element.addEventListener("click",function,true)
+		* element.removeEventListener("clcik",function,true)
+- 获取标签的自定义属性
+	+ IE
+		* div.value
+		* div["value"]
+	+ FF
+		*	div.getAttribute("value")
+- document.getElementByName()和document.all[name]
+	+ IE 都不可以
+	+ FF可以
+- input.type属性
+	+ IE input.type 只读
+	+ FF input.type 可读写
+- innerText、outerHTML、textContent
+- id代替HTML元素
+	+ IE 可以
+	+ FF 不可以
+
 #### 浏览器兼容
 - 浏览器的类型和版本不同会造成CSS效果不尽相同
 - 对于低版本的IE可以编写特定前缀的代码，实现版本识别
@@ -457,3 +577,17 @@ extend()
 - 文件最小化处理
 - 文件合并
 - 缓存的使用
+
+## 优化
+#### jQ优化
+- 用id选择器替代class选择器
+- 缓存DOM操作，或使用jquery链式调用
+
+
+#### js优化
+- for循环中，提前保存arr.length
+- 使用DocuementFragment优化多次appendChild
+- 使用模板元素clone，替代createElement
+- 使用firstChild和nextSibling替代childNodes遍历dom元素
+- 使用三目替代条件分支
+- 使用重复执行时，优先使用setInterval
