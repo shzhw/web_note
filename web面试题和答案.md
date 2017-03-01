@@ -167,7 +167,8 @@
 #### target属性
 - _top ：顶层window
 - _parent ：当前frame的父window中
-- _blank ：新的window
+- _blank ：新窗口中打开
+- _self : 默认，在相同的框架中打开
 - main、left、top是由Dreamwerver生成的主左上框架的框架默认名
 
 #### 盒子模型
@@ -244,6 +245,10 @@
 #### a连接hover样式问题
 - 点击过后样式不在具有hover和active
 - L-V-H-A
+	+ link
+	+ visited
+	+ hover
+	+ active
 
 
 ****
@@ -255,6 +260,7 @@
 - call/apply
 - new 
 - 箭头函数
+- bind
 
 #### 冒泡排序
 #### 创建对象
@@ -282,6 +288,10 @@
 
 #### 阻止表单提交
 #### string.match和RegExp.exec
+- exec
+	+ 可以获取源字符串
+	+ 匹配字符在源字符串的索引
+
 #### trim
 #### js中操作cookie
 - `document.cookie`
@@ -572,17 +582,38 @@ extend()
 - `div{ height:auto !important; height:200px; min-height:200px}`
 #### [常见的兼容性]( http://www.cnblogs.com/lgmcolin/archive/2013/02/12/2910179.html)
 
-## web优化
-- CDN托管
-- 文件最小化处理
-- 文件合并
-- 缓存的使用
-
 ## 优化
+#### 从输入URL到页面呈现
+- 输入URL地址或者点击URL的连接
+- 浏览器根据URL地址，结合DNS，解析出RUL对应的IP地址
+- 发送HTTP请求
+- 开始连接请求的服务器并且请求相关的内容
+- 浏览器解析从服务器端返回的内容，并且把页面呈现出来
+
+#### 前端优化
+- 减少HTTP请求
+	+ 合并文件
+	+ css精灵
+- 使用浏览器缓存
+	+ \*
+- 使用压缩组件
+- 图片、JS的预载入
+	+ 可以在登录页面做预载入
+- 将脚本放在底部
+- 将样式文件放在顶部
+- 使用外部的JS和css
+- 切分组件到多个域
+	+ 提高并行下载能力
+	+ 但不要跨太多域名，建议采用2个子域名
+- 精简JS和css
+- 精简图片和Flash
+
+#### 程序优化
+#### 数据库优化
+
 #### jQ优化
 - 用id选择器替代class选择器
 - 缓存DOM操作，或使用jquery链式调用
-
 
 #### js优化
 - for循环中，提前保存arr.length
@@ -591,3 +622,6 @@ extend()
 - 使用firstChild和nextSibling替代childNodes遍历dom元素
 - 使用三目替代条件分支
 - 使用重复执行时，优先使用setInterval
+
+
+

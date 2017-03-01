@@ -112,9 +112,9 @@
 - charAt
 - charCodeAt
 - subString 截取
-- split 分割
 - startWith
 - forEach *IE中没有*
+- split 分割 String.split
 
 ## 函数
 #### 概念

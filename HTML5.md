@@ -203,3 +203,13 @@ layer.add(rect);
 </body>
 </html>
 ```
+```
+var animate = new Konva.Animation(function(frame){
+	//frame.timeDiff上一帧和当前帧的时间差
+	//timeDiff内旋转的角度
+	var totateAngle=60*frame.timeDiff/1000;
+
+	group2.rotate(totateAngle);//角度
+
+},animateLayer);
+```
