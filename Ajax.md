@@ -8,6 +8,7 @@
 
 #### 语法
 - 定义对象 XMLHttpRequest
+	+ IE中是 ActiveXObject("Microsoft.XMLHTTP")
 - 初始化 open
 	+ 第一个参数
 		* `get` 参数写在连接中

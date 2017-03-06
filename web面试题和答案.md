@@ -3,7 +3,7 @@
 - html语义化就是让页面的内容结构化
 - 使阅读代码的人更容易将网站内容分块，便于阅读维护理解。
 - 没有css样式的情况下也以一种文档格式显示，并且是容易阅读的
-- 搜索引擎的爬虫依赖于标记来确定上下文和各个关键字的权重，*利于SEO*
+- 搜索引擎的爬虫依赖于标记来确定上下文和各个关键字的权重，*利于SEO（搜索引擎优化）*
 - 便于浏览器、搜索引擎的解析
 - 对搜索引擎的抓取有好处
 - 用正确的标签做正确的事
@@ -298,9 +298,9 @@
 
 #### innerHTML、outerHTML、innerText、textContent
 - innerHTML是W3C的，不包含标签
-- textContent属性读取或设置指定节点的文本内容，所包含的所有子节点的文本内容组合
-- outerHTML和innerText是IE独有的
 - outerHTML是元素节点内所有子节点和当前节点组成的HTML代码，包含标签
+- textContent和innerText是IE独有的
+- textContent属性读取或设置指定节点的文本内容，所包含的所有子节点的文本内容组合 **w3c**
 - innerText是元素节点内所有的文本节点
 - nodeValue通过属性的方式读取或设置指定节点的文本内容，只适用于文本类型的节点
 
@@ -332,7 +332,7 @@
 - 缺点
 	+ 不支持浏览器back按钮
 	+ 安全问题
-	+ 对搜索引擎的支持比较弱
+	+ 对搜索引擎的支持比较弱，SEO无法实现
 
 #### Ajax乱码
 - 统一页面和服务器的编码
@@ -403,6 +403,11 @@ extend()
 - 过滤选择器
 
 #### ajax、get、post、ajaxSetup、getJSON
+#### jQuery绑定事件
+- bind()
+- on()
+- delegate()
+- live()
 
 #### 网页与服务器的即时通信
 - websockets
@@ -435,7 +440,7 @@ extend()
 #### eval
 - 将字符串解析成js代码执行
 - 不安全
-- 非常好性能，解析一次，执行一次
+- 非常耗性能，解析一次，执行一次
 
 #### null,undefined
 - null是一个空对象，`type of` 返回`object`
@@ -469,8 +474,12 @@ extend()
 - 实时消息推送
 - 基于事件驱动和无阻塞
 
+#### Node的优点和缺点
+- 基于事件驱动和无阻赛，适合处理高并发的请求
+- 不稳定
+
 #### map
-#### hasOwnProperty，执行对象查找是，永远不会查找原型
+#### hasOwnProperty，执行对象查找时，永远不会去查找原型
 #### js延迟加载的方式
 - defer 只支持IE
 - asunc
@@ -484,9 +493,10 @@ extend()
 - 服务器上设置代理页面
 
 #### AMD和CMD
+- AMD是RequireJS在推广过程中对模块定义的规范化产出；CMD是SeaJS在推广过程中对模块定义的规范化产出。
 - 对于依赖的模块，AMD是提前执行的，CMD是延迟执行。
 - ReuireJs从2.0开始，也改成了延迟执行
-- CMD推崇依赖就近，AMD推崇依赖前置
+- AMD推崇依赖前置，CMD推崇依赖就近
 - AMD的API默认是一个当多个用，CMD的API严格区分，职责单一
 
 #### call和apply
@@ -494,6 +504,7 @@ extend()
 - 异步执行js文件
 - 不能修改HTML元素，可以自由使用js数据类型
 - var worker=new Worker(.js)
+- worker.terminate() 终止webworker
 
 #### 内存泄露
 - setTimeout第一个参数是字符串时
@@ -524,8 +535,8 @@ extend()
 #### IE和FF
 - window.event
 - 获取事件源
-	+ srcElement 
-	+ target
+	+ srcElement IE 
+	+ target FF
 - 添加，去除事件
 	+ IE
 		* element.attachEvent("onclick",function)
@@ -574,7 +585,9 @@ extend()
 - IE6 png24  做成png8
 - min-height
 - 常规属性获取方法和getAttribute()
-- even对象的x，y和pageX，pageY
+- even对象的
+	+ IE:x，y
+	+ FF:pageX，pageY
 - chrome中文小于12px默认强制12px，-webkit-text-size-adjust:none;
 
 #### 如何处理h5新标签和浏览器之间的兼容性

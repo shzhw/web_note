@@ -10,6 +10,7 @@
 #### 特点
 - 弱类型语言
 - 无需编译
+
 #### 语法
 - 严格区分大小写
 
@@ -32,8 +33,9 @@
 
 #### 位运算符
 - >>    <<
-+ 左移：m<<n 将m的二进制数左移n位，相当于*2的n次方
-+ 右移：m>>n 将m的二进制数右移n位，相当于/2的n次方
+	+ 左移：m<<n 将m的二进制数左移n位，相当于*2的n次方
+	+ 右移：m>>n 将m的二进制数右移n位，相当于/2的n次方
+- ~ 取反
 
 #### 扩展运算符
 - `+=  -=  /=  *=  %=`
@@ -92,9 +94,10 @@
 #### 二维数组
 
 ## API
+#### 数组API
 - length
 - indexOf
-- lastIndexOf
+- lastIndexOf 不支持正则
 - toString()
 - join 
 	+ `arr.join("连接符")`		
@@ -107,14 +110,72 @@
 - pop
 - shift
 - unshift
+- forEach *IE中没有*
+- map 映射
+	+ 功能和forEach类似 
+	+ array.map(callback,[thisObject]);
+	+ callback需要有return值
+```
+IE6,7,8支持需要扩展
+if (typeof Array.prototype.map != "function") {
+  Array.prototype.map = function (fn, context) {
+    var arr = [];
+    if (typeof fn === "function") {
+      for (var k = 0, length = this.length; k < length; k++) {      
+         arr.push(fn.call(context, this[k], k, this));
+      }
+    }
+    return arr;
+  };
+}
+```
+
+#### 字符串API
+- length
+- indexOf
+	+ 返回索引
+- lastIndexOf 
+- search
+	+ 返回索引
+- match
+	+ 返回数组
+- replace
+- concat
+- slice 截取
 - toUpperCase 大写
 - toLowerCase	小写
 - charAt
 - charCodeAt
 - subString 截取
-- startWith
-- forEach *IE中没有*
+- startsWith
 - split 分割 String.split
+
+#### 正则API
+- 支持正则的字符串API
+	+ search
+		* 不支持g，找到第一个停止
+		* 没有返回-1
+	+ match
+		* 区别于exec，一次返回所有匹配
+	+ replace
+	+ split
+		* 支持模式匹配
+- RegExp.API
+	+ exec 返回数组
+		* 和test执行模式一样
+	+ test 判断是否存在
+		* `regExpObject.test(str)`
+		* 返回Boolean
+		* 设置了全局标志 `g` ，最多也只查找一个匹配，需要再次调用才能继续往下查找
+		* 原因：
+			1. test()函数是从属性 `regExpObject.lastIndex` 所指定的索引开始查找
+			2. 找到第一个时，`regExpObject.lastIndex` 的值将成为本次匹配内容的最后一个字符的下一个索引位值
+			3. 如果执行一次过后需要再次**从头查找**,需要手动将`regExpObject.lastIndex`重置为零
+
+#### replace进阶
+- 分组匹配
+- 函数作为参数，对匹配的字符串进行二次操作
+#### call和apply
 
 ## 函数
 #### 概念
@@ -166,8 +227,8 @@
 - \D 非数字，[^0-9]
 - \s 空格
 - \S 非空格 
-- \w 字母或数字 ，等价于[a-zA-Z0-9]
-- \W 非字母或非数字，等价于[^a-zA-Z0-9]
+- \w 字母或数字下划线 ，等价于[a-zA-Z0-9_]
+- \W 非字母或非数字非下划线，等价于[^a-zA-Z0-9_]
 ---
 - g 全局匹配
 - i 不区分大小写
@@ -194,23 +255,6 @@
 #### 预判
 - `?!`
 - `?=`
-
-#### 正则API
-- 支持正则的字符串API
-	+ indexOf/lastIndexOf
-	+ search
-		* 不支持g，找到第一个停止
-	+ match
-		* 返回数组
-	+ replace
-	+ split
-- RegExp.API
-	+ exec
-	+ test
-
-#### replace进阶
-- 分组匹配
-- 函数作为参数，对匹配的字符串进行二次操作
 
 ## DOM
 #### 节点树
@@ -308,45 +352,6 @@
 - `JSON.parse()` 反序列化
 - `JSON.stringify()` 序列化
 
-## 函数的四种调用模式
-- 函数执行模式
-	+ `this` ---> global，浏览器中指向window
-- 对象方法的调用模式
-	+ `this` ---> 调用方法的对象
-- 构造器的调用模式（没有return）
- 	+ `this` --->  构造出来实例的对象
-- call和apply调用模式
-	+ call 借用时将被借用者的this指向借用者
-## this指向
-- global
-- 调用对象
-- call、apply
-- bind
-- new
-- 箭头函数
-
-## 操作符 new
-- 在内存中开一块空间
-- 创建一个新空对象
-- 把 this 指向这个新对象
-- 把空对象的__proto__指向构造函数的原型对象
-- 当构造函数执行完成，没有return，那么将空对象返回
-- 如果构造函数有return
-
-```
-function Func(){
-	
-}
-var a = new Func();
-```
-
-## eval
-
-## console.time();
-- 测试一段程序的执行时间
-	+ console.time("main")
-	+ console.timeEnd("main");
-
 ## 事件对象
 #### event
 - `var btn.onclick=function(event){}`
@@ -359,13 +364,42 @@ var a = new Func();
 	+ pageX 文档为基准点 （IE6,7,8不兼容） 
 	+ clientX 当前窗口（可视区）
 
-## 事件冒泡
-- 当一个元素事件被触发，同样的事件将会在那个元素的所有祖先元素中被触发
+## 事件流
+#### 事件冒泡
+- 当一个元素事件被触发，同样的事件将会在那个元素的所有祖先元素中被依次触发
 - 这个事件会一直冒泡到DOM树最上层
 - blur、focus、load、unload
+- IE 5.5: `div -> body -> document`
+- IE 6.0: `div -> body -> html -> document`
+
+#### 事件捕获
+- 事件捕获是一个和事件冒泡完全相反的过程，即事件由祖先元素（最不精确）向子元素（最精确）传播
+- `document -> div`
+
+#### DOM事件流
+- 同时支持捕获和冒泡，捕获先发生
+- 两种事件流会触及DOM中的所有对象，从document对象开始，也在document对象结束，文本节点也触发（IE中不会）
+- W3C DOM: `window -> document -> body -> div -> (text)` `-> div -> body -> document -> window`
+- IE: `window -> document -> body -> div` `-> body -> document -> window`
+
+#### 绑定事件
+- 程序猿可以选择绑定事件采用捕获还是冒泡
+	+ `ele.addEventListener("click",function,true)`
+	+ 第三个参数 ：`true`为捕获 —— `false`为冒泡
+- 传统的绑定事件方式
+	+ 在一个支持W3C DOM的浏览器中，像这样一般的绑定事件方式，是采用的事件冒泡方式。
+		* `ele.onclick=function`
+- IE只支持事件冒泡，不支持事件捕获，它也不支持addEventListener函数，不会用第三个参数来表示是冒泡还是捕获，它提供了另一个函数attachEvent。
+	+ `ele.attachEvent("onclick", doSomething2)`
+
+#### 阻止事件传播
 - 阻止冒泡
 	+ `event.stopPropagation()` W3C
 	+ `event.cancelBubble = true` IE
+
+#### 阻止事件默认行为
+- `preventDefault()` W3C
+- `window.event.returnValue = false` IE
 
 ## BOM
 #### Window
@@ -400,3 +434,42 @@ var a = new Func();
 - 步长
 - offsetLeft+步长
 
+## javascript进阶
+#### 函数和变量
+- 变量声明**早于**代码运行（声明提前）
+- 函数声明**高于**变量声明
+- 给基本类型数据添加属性，不报错，但值为undefined
+
+#### 自执行函数
+#### this
+- 函数的四种调用模式
+	+ 函数执行模式
+		* `this` ---> global，浏览器中指向window
+	+ 对象方法的调用模式
+		* `this` ---> 调用方法的对象
+	+ 构造器的调用模式（没有return）
+	 	* `this` --->  构造出来实例的对象
+	+ call和apply调用模式
+		* call 借用时将被借用者的this指向借用者
+- this指向
+	+ global
+	+ 调用对象
+	+ call、apply
+	+ bind
+	+ new
+	+ 箭头函数
+
+#### new
+- 在内存中开一块空间
+- 创建一个新空对象
+- 把 this 指向这个新对象
+- 把空对象的__proto__指向构造函数的原型对象
+- 当构造函数执行完成，没有return，那么将空对象返回
+- 如果构造函数有return
+
+#### eval
+
+#### console.time();
+- 测试一段程序的执行时间
+	+ console.time("main")
+	+ console.timeEnd("main");
