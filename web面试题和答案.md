@@ -573,12 +573,17 @@ extend()
 }
 ```
 - css reset
-- IE低版本不识别auto，父元素加text-align
+
 - 外边距溢出
 - 外边距合并
 - 条件注释（缺点增加额外的请求）
 
 #### 常见兼容
+- 内外边距不同
+- 设置较小边距，ie低版本浏览器会比设置值大
+- 图片间距
+- min-height
+- IE低版本不识别auto，父元素加text-align
 - IE6双倍边距 （横向margin） _display
 - 超链接点击失效
 - z-index 
