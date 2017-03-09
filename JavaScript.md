@@ -110,9 +110,9 @@
 - pop
 - shift
 - unshift
-- forEach *IE中没有*
+- forEach *IE中6-8不兼容*
 - map 映射
-	+ 功能和forEach类似 
+	+ 功能和forEach类似
 	+ array.map(callback,[thisObject]);
 	+ callback需要有return值
 ```
@@ -182,7 +182,6 @@ if (typeof Array.prototype.map != "function") {
 - 完成一定功能的一段预定义好的代码
 - 工具
 - 单一职责原则
-- 工具
 
 ## 对象
 #### 概念

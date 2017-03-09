@@ -313,10 +313,6 @@
 - Object、Function、Array、String、Boolean
 - RangeError、ReferenceError、SyntaxError、TypeError、URIError
 
-#### javascipt同源策略
-- 一段js代码只能读取来自同一来源的窗口和文档的属性
-- 来源：主机名、协议和端口号的组合
-
 #### Ajax
 - 客户端向服务器端发送请求，而无需刷新页面的技术
 - 包含的技术：HTML、css、JavaScript、XML和XMLHttpRequest
@@ -351,6 +347,10 @@
 #### 如何从服务器获取复杂数据
 - json
 - xml
+
+#### javascipt同源策略
+- 一段js代码只能读取来自同一来源的窗口和文档的属性
+- 来源：主机名、协议和端口号的组合
 
 #### 跨域
 - js中支持跨域的标签
@@ -389,7 +389,7 @@
 - bind
 - unbind
 *** 
-extend()
+- extend()
 
 #### onload()和 $(document).ready()的区别
 - document.onload是在结构和样式加载完才执行js
@@ -421,7 +421,8 @@ extend()
 #### DOM查找元素
 #### 判断数据类型
 - typeof
-- toString.call- instanceof
+- toString.call
+- instanceof
 - constructor
 
 
@@ -458,10 +459,6 @@ extend()
 
 #### 事件委托
 - 利用事件冒泡的原理，自己所触发的事件，让他的父元素代替执行
-
-#### 阻止事件冒泡和默认事件
-- `cancelBubble`
-- `return false`
 
 #### IE和标准的兼容性写法
 - `var ev = ev || window.event` 
@@ -525,9 +522,9 @@ extend()
 #### http状态码
 - 200 成功
 - 303
-- 400
+- 400 请求接受，但处理未完成
 - 404 资源不存在
-- 500
+- 500 服务器错误
 
 *****
 
@@ -544,6 +541,9 @@ extend()
 	+ FF
 		* element.addEventListener("click",function,true)
 		* element.removeEventListener("clcik",function,true)
+- 阻止默认事件
+	+ `preventDefault()` W3C
+	+ `window.event.returnValue = false` IE
 - 获取标签的自定义属性
 	+ IE
 		* div.value
@@ -573,17 +573,12 @@ extend()
 }
 ```
 - css reset
-
+- IE低版本不识别auto，父元素加text-align
 - 外边距溢出
 - 外边距合并
 - 条件注释（缺点增加额外的请求）
 
 #### 常见兼容
-- 内外边距不同
-- 设置较小边距，ie低版本浏览器会比设置值大
-- 图片间距
-- min-height
-- IE低版本不识别auto，父元素加text-align
 - IE6双倍边距 （横向margin） _display
 - 超链接点击失效
 - z-index 
