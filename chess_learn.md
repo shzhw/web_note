@@ -46,3 +46,15 @@ num 指定要位移值 value 移动的位数
   + 首位为1时，就需要先取反再换算
 - 小数二进制 --> 十进制
   + 0.1101 --> 0*2^0 + 1*2^-1 + 1*2^-2 + 0*2^-3 + 1*2^-4
+
+
+
+## Unicode 和 数字
+#### formCharCode() Unicode数字 转成 字符串
+- `formCharCode(numX1,numX2,numX3...);`
+
+#### charCodeAt() 指定位置的字符的 Unicode 编码
+- `str.charCodeAt(index);`
+
+#### charAt() 返回指定位置的字符
+- `str.charAt(index);`
